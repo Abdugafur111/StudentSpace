@@ -2,6 +2,7 @@ package ru.alishev.springcourse.FirstSecurityApp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,16 +25,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // конфигурируем сам Spring Security
-        // конфигурируем авторизацию
-        http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
+        http
+                .authorizeRequests()
+                .antMatchers("/userprofile").hasRole("ADMIN")
+                .antMatchers("/hello").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
-                .anyRequest().hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/userprofile/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/userprofile/delete/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/auth/login")
+                .formLogin()
+                .loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/hello", true)
+                .successHandler(new RoleBasedAuthenticationSuccessHandler("/hello", "/userprofile"))
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout()
@@ -41,7 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/auth/login");
     }
 
-    // Настраиваем аутентификацию
+
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(personDetailsService)

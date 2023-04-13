@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profiles</title>
+</head>
+<body>
+<h1>User Profiles</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>Date of Birth</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody>
+    <!-- Loop through all users and display their information in a row -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.country}"></td>
+        <td th:text="${user.dateOfBirth}"></td>
+        <td><form th:action="@{/users/4/follow/1}" method="post">
+            <button type="submit">Follow</button>
+        </form></td>
+        <td><a th:href="@{/userprofile/{id}/edit(id=${user.id})}">Edit</a></td>
+
+
+        <td>
+        <form th:method="DELETE" th:action="@{/userprofile/delete/{id}(id=${user.id})}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="hidden" name="_method" value="DELETE"/>
+            <input type="submit" value="Delete"/>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/userprofile/new">Add User Profile</a>
+</body>
+</html>
