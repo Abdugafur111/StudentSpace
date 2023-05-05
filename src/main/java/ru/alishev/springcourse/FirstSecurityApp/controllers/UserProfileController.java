@@ -1,6 +1,7 @@
 package ru.alishev.springcourse.FirstSecurityApp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,15 +14,19 @@ import ru.alishev.springcourse.FirstSecurityApp.repositories.UserProfileDAO;
 public class UserProfileController {
     private final UserProfileDAO userProfileDAO;
 
+
     @Autowired
 
-    public UserProfileController(UserProfileDAO userProfileDAO) {
+    public UserProfileController(UserProfileDAO userProfileDAO, PasswordEncoder passwordEncoder) {
         this.userProfileDAO = userProfileDAO;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("users", userProfileDAO.getAllUsers());
+        for(int i=0; i<userProfileDAO.getAllUsers().size();i++){
+            System.out.println(userProfileDAO.getAllUsers().get(i).getStudentId());
+        }
         System.out.println("index");
         return "userprofile/index";
     }
@@ -33,6 +38,7 @@ public class UserProfileController {
     }
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
+        System.out.println("omad");
         model.addAttribute("userprofile", userProfileDAO.getUserById(id));
         System.out.println("get-edit");
         return "userprofile/edit";
@@ -41,7 +47,7 @@ public class UserProfileController {
     @PostMapping("/{id}")
     public String update(@ModelAttribute("userprofile") UserProfile userProfile, BindingResult bindingResult,
                          @PathVariable("id") int id) {
-        System.out.println("post-edit");
+        System.out.println("user-edit");
         if (bindingResult.hasErrors())
             return "userprofile/edit";
 

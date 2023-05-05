@@ -1,12 +1,14 @@
 package ru.alishev.springcourse.FirstSecurityApp.models;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+
 public class UserProfile {
-    private int id;
+
+
+
     @NotEmpty(message = "email should not be empty")
     @Size(min = 2, max = 100, message = "Length of email should be from 2 char to 100")
     private String email;
@@ -14,23 +16,36 @@ public class UserProfile {
     @NotEmpty(message = "password should not be empty")
     @Size(min = 2, max = 100, message = "Length of password should be from 2 char to 100")
     private String password;
-    private String country;
-    private LocalDate dateOfBirth;
-    private String name;
-    private String surname;
+
+    private String address;
+    private String dateOfBirth;
+    private String firstName;
+    private String lastName;
 
     private String role;
 
-    public UserProfile() {}
+    private int studentId;
 
-    public UserProfile(String email, String password, String country, LocalDate dateOfBirth, String name, String surname) {
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public UserProfile(String email, String password, String address, String dateOfBirth, String firstName, String lastName, int studentId) {
         this.email = email;
         this.password = password;
-        this.country = country;
+        this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.studentId = studentId;
     }
+
+    public UserProfile() {}
+
 
     public String getRole() {
         return role;
@@ -40,13 +55,6 @@ public class UserProfile {
         this.role = role;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
@@ -64,49 +72,48 @@ public class UserProfile {
         this.password = password;
     }
 
-    public String getCountry() {
-        return country;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     @Override
     public String toString() {
         return "UserProfile{" +
-                "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", country='" + country + '\'' +
+                ", country='" + address + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", name='" + firstName + '\'' +
+                ", surname='" + firstName + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

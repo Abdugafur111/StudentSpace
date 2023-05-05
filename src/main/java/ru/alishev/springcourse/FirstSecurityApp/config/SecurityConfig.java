@@ -16,11 +16,17 @@ import ru.alishev.springcourse.FirstSecurityApp.services.UserProfileDetailsServi
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserProfileDetailsService personDetailsService;
+    private UserProfileDetailsService userProfileDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userProfileDetailsService)
+                .passwordEncoder(getPasswordEncoder());
+    }
 
     @Autowired
-    public SecurityConfig(UserProfileDetailsService personDetailsService) {
-        this.personDetailsService = personDetailsService;
+    public void setUserProfileDetailsService(UserProfileDetailsService userProfileDetailsService) {
+        this.userProfileDetailsService = userProfileDetailsService;
     }
 
     @Override
@@ -28,16 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/userprofile").hasRole("ADMIN")
-                .antMatchers("/hello").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/hello").hasAnyRole("STUDENT", "ADMIN")
                 .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
-                .antMatchers(HttpMethod.POST, "/userprofile/**").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/userprofile/delete/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/userprofile/**","/posts/new","/posts/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .successHandler(new RoleBasedAuthenticationSuccessHandler("/hello", "/userprofile"))
+                .successHandler(new RoleBasedAuthenticationSuccessHandler("/posts", "/userprofile"))
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout()
@@ -48,11 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(personDetailsService)
-                .passwordEncoder(getPasswordEncoder());
-    }
+
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
