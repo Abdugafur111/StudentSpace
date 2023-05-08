@@ -59,7 +59,6 @@
 
 </style>
 <body>
-<h1>Edit User Profile</h1>
 
 <form th:action="@{/userprofile/{id}(id=${userprofile.getStudentId()})}" th:method="POST" th:object="${userprofile}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

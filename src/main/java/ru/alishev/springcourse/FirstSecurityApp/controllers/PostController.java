@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.alishev.springcourse.FirstSecurityApp.models.Follower;
 import ru.alishev.springcourse.FirstSecurityApp.models.Post;
+import ru.alishev.springcourse.FirstSecurityApp.models.PostComment;
 import ru.alishev.springcourse.FirstSecurityApp.models.UserProfile;
-import ru.alishev.springcourse.FirstSecurityApp.repositories.PostDAO;
-import ru.alishev.springcourse.FirstSecurityApp.repositories.UserProfileDAO;
+import ru.alishev.springcourse.FirstSecurityApp.repositories.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -18,11 +19,19 @@ public class PostController {
 
     private final PostDAO postDAO;
     private final UserProfileDAO userProfileDAO;
+    private final PostLikeDAO postLikeDAO;
+
+    private final PostCommentDAO postCommentDAO;
+
+    private final FollowersDAO followersDAO;
 
     @Autowired
-    public PostController(PostDAO postDAO, UserProfileDAO userProfileDAO) {
+    public PostController(PostDAO postDAO, UserProfileDAO userProfileDAO, PostLikeDAO postLikeDAO, PostCommentDAO postCommentDAO, FollowersDAO followersDAO) {
         this.postDAO = postDAO;
         this.userProfileDAO = userProfileDAO;
+        this.postLikeDAO = postLikeDAO;
+        this.postCommentDAO = postCommentDAO;
+        this.followersDAO = followersDAO;
     }
 
     @GetMapping("/adminPosts")
@@ -36,11 +45,34 @@ public class PostController {
     public String getAllPosts(Model model, Principal principal) {
         List<Post> posts = postDAO.getAllPosts();
         UserProfile user = userProfileDAO.getUserByEmail(principal.getName());
+        List<String> followers = followersDAO.getFollowing(user.getEmail());
+        System.out.println(followers.size());
 
+        for (Post post : posts) {
+            List<PostComment> comments = postCommentDAO.getAllCommentsByPostId(post.getPostId());
+            post.setNumComments(comments.size());
+
+            int numLikes = postLikeDAO.getPostLikes(post.getPostId()).size();
+            post.setNumLikes(numLikes);
+
+
+            if(postLikeDAO.getPostLikeByEmail(post.getPostId(),user.getEmail())==true) {
+                post.setLiked(true);
+            }else{
+                post.setLiked(false);
+            }
+        }
+
+
+        model.addAttribute("followers", followers);
         model.addAttribute("posts", posts);
         model.addAttribute("email", user.getEmail());
+        model.addAttribute("user", user);
         return "posts/index";
     }
+
+
+
 
 
 

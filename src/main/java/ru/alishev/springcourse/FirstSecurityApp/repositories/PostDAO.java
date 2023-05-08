@@ -26,8 +26,9 @@ public class PostDAO {
     }
 
     public List<Post> getAllPosts() {
-        return jdbcTemplate.query("SELECT * FROM POSTS", new PostRowMapper());
+        return jdbcTemplate.query("SELECT * FROM POSTS ORDER BY post_created_time DESC", new PostRowMapper());
     }
+
 
     public Post getPostById(int id) {
         return jdbcTemplate.query("SELECT * FROM POSTS WHERE post_id=?", new Object[]{id}, new PostResultSetExtractor());
@@ -44,6 +45,7 @@ public class PostDAO {
     public void deletePost(int id) {
         jdbcTemplate.update("DELETE FROM POSTS WHERE post_id=?", id);
     }
+
 
     private static final class PostRowMapper implements RowMapper<Post> {
 

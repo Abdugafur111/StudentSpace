@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .successHandler(new RoleBasedAuthenticationSuccessHandler("/posts", "/userprofile"))
+                .successHandler(new RoleBasedAuthenticationSuccessHandler("/posts", "/posts"))
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout()

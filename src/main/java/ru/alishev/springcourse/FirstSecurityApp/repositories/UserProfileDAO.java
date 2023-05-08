@@ -36,7 +36,7 @@ public class UserProfileDAO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         System.out.println(user.getDateOfBirth());
         LocalDate dateOfBirth = LocalDate.parse(user.getDateOfBirth(), formatter);
-        jdbcTemplate.update("INSERT INTO USERS(email,student_id, password, address, date_of_birth, first_name, last_name, role) VALUES (?,?, ?, ?, ?, ?, ?,'ROLE_ADMIN')",
+        jdbcTemplate.update("INSERT INTO USERS(email,student_id, password, address, date_of_birth, first_name, last_name, role) VALUES (?,?, ?, ?, ?, ?, ?,'ROLE_STUDENT')",
                 user.getEmail(),user.getStudentId(), user.getPassword(), user.getAddress(), dateOfBirth, user.getFirstName(), user.getLastName());
 
     }

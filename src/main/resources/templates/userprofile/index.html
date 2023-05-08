@@ -80,12 +80,13 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Email</th>
-        <th>Country</th>
+        <th>Address</th>
         <th>Date of Birth</th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
+
     </tr>
     <tbody>
     <!-- Loop through all users and display their information in a row -->
@@ -103,17 +104,22 @@
             <form th:method="GET" th:action="@{/userprofile/{id}/edit(id=${user.getStudentId()})}">
                 <input type="submit" value="Edit"/>
             </form>
-        </td>
 
-
-        <td>
             <form th:method="DELETE" th:action="@{/userprofile/delete/{id}(id=${user.getStudentId()})}">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <input type="hidden" name="_method" value="DELETE"/>
-            <input type="submit" value="Delete"/>
-             </form>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input type="submit" value="Delete"/>
+            </form>
         </td>
+
+
+
     </tr>
+    <td>
+        <form th:method="GET" th:action="@{/posts/adminPosts}">
+            <input type="submit" value="Posts"/>
+        </form>
+    </td>
     </tbody>
 </table>
 </body>
