@@ -75,3 +75,12 @@ https://github.com/Abdugafur111/StudentSpace/assets/64993553/fb1a8958-8404-44b3-
 
 
 
+
+#ERD
+
+
+
+
+![Screen Shot 2023-05-12 at 1 47 05 AM](https://github.com/Abdugafur111/StudentSpace/assets/64993553/8c51742b-7308-4cfb-96fa-4a0b2af75b9c)
+
+
