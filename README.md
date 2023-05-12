@@ -6,12 +6,20 @@
 
 
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/b269d19b-0175-47f2-bc29-9dc5b4321c7b.mov
+
+
+
+
 #Adding new post, editing post, deleting post 
 
 
 
 
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/9f7ad88f-f211-45c1-853b-f9ef65fbdcb7.mov
+
+
+
+
 #Liking post, commenting post
 
 
