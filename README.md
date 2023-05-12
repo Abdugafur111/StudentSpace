@@ -26,12 +26,20 @@ https://github.com/Abdugafur111/StudentSpace/assets/64993553/9f7ad88f-f211-45c1-
 
 
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/60d7aad3-8e50-458e-888e-3d704023fc14.mov
+
+
+
+
 #Searching users posts
 
 
 
 
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/9ab93a01-b451-4fe5-9e95-494cabdce3f8.mov
+
+
+
+
 #Admin Pages
 
 
