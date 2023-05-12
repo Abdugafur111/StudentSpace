@@ -7,7 +7,7 @@ https://github.com/Abdugafur111/StudentSpace/assets/64993553/9f7ad88f-f211-45c1-
 #Liking post, commenting post
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/60d7aad3-8e50-458e-888e-3d704023fc14
 #Searching users posts
-https://github.com/Abdugafur111/StudentSpace/assets/64993553/70dda089-b7f0-4c94-bfdf-91bf42095a3a
+https://github.com/Abdugafur111/StudentSpace/assets/64993553/9ab93a01-b451-4fe5-9e95-494cabdce3f8
 #Admin Pages
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/e16a75b5-b3fb-40cb-85c1-66a19cde88f1
 
