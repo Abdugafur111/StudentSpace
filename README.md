@@ -46,3 +46,27 @@ https://github.com/Abdugafur111/StudentSpace/assets/64993553/9ab93a01-b451-4fe5-
 
 
 https://github.com/Abdugafur111/StudentSpace/assets/64993553/e16a75b5-b3fb-40cb-85c1-66a19cde88f1.mov
+
+
+
+
+
+#Dockerized PostgreSQL inside Digital Ocean Droplet
+
+
+
+
+https://github.com/Abdugafur111/MusicApp/assets/64993553/09496084-f8b9-4f2d-a181-20bce3fd72fe.mov
+
+
+
+
+
+#Connecting hosted PostgreSQL to our Intellij IDE
+
+
+
+https://github.com/Abdugafur111/StudentSpace/assets/64993553/fb1a8958-8404-44b3-8224-86fba873dd43
+
+
+
