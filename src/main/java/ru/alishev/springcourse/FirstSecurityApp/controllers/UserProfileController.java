@@ -30,12 +30,12 @@ public class UserProfileController {
         System.out.println("index");
         return "userprofile/index";
     }
-
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("userprofile", userProfileDAO.getUserById(id));
-        return "userprofile/show";
-    }
+//
+//    @GetMapping("/{id}")
+//    public String show(@PathVariable("id") int id, Model model) {
+//        model.addAttribute("userprofile", userProfileDAO.getUserById(id));
+//        return "userprofile/show";
+//    }
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         System.out.println("omad");
@@ -52,7 +52,7 @@ public class UserProfileController {
             return "userprofile/edit";
 
         userProfileDAO.updateUser(id, userProfile);
-        return "redirect:/userprofile";
+        return "redirect:/posts";
     }
 
     @PostMapping("delete/{id}")

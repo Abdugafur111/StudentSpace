@@ -71,15 +71,15 @@
     <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth"/>
     <div style="color:red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Year of birth Error</div>
     <br/>
-    <label for="firstName">Name: </label>
+    <label for="firstName">First Name: </label>
     <input type="text" th:field="*{firstName}" id="firstName"/>
     <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</div>
     <br/>
-    <label for="lastName">Date of Birth: </label>
+    <label for="lastName">Second Name: </label>
     <input type="text" th:field="*{lastName}" id="lastName"/>
     <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Surname Error</div>
     <br/>
-    <input type="submit" value="Sign up!"/>
+    <input type="submit" value="Sign up"/>
 </form>
 
 </body>

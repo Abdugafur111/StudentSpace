@@ -120,6 +120,7 @@
             <li class="comment" th:each="comment : ${comments}">
                 <p><b><span th:text="${comment.postCommentUserEmail}"></span></b></p>
                 <p ><span  th:text="${comment.postCommentText}"></span></p>
+                <p ><b><span  th:text="${comment.getPostCommentCreatedTime()}"></span></b></p>
                 <hr>
             </li>
         </th:block>

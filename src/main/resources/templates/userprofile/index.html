@@ -101,9 +101,6 @@
 <!--            <button type="submit">Follow</button>-->
 <!--        </form></td>-->
         <td>
-            <form th:method="GET" th:action="@{/userprofile/{id}/edit(id=${user.getStudentId()})}">
-                <input type="submit" value="Edit"/>
-            </form>
 
             <form th:method="DELETE" th:action="@{/userprofile/delete/{id}(id=${user.getStudentId()})}">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -116,8 +113,8 @@
 
     </tr>
     <td>
-        <form th:method="GET" th:action="@{/posts/adminPosts}">
-            <input type="submit" value="Posts"/>
+        <form style="background-color: #4CAF50" th:method="GET" th:action="@{/posts/adminPosts}">
+            <input style="background-color: #4CAF50" type="submit" value="Posts"/>
         </form>
     </td>
     </tbody>
