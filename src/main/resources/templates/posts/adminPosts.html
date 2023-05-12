@@ -76,6 +76,9 @@
   }
 </style>
 <body>
+<form th:action="@{/logout}" th:method="POST">
+  <input style="margin-left: 1300px" type="submit" value="Logout" />
+</form>
 <h1>All Posts</h1>
 
 <table>
@@ -107,9 +110,9 @@
     </tr>
   </th:block>
 
-  <td>
-    <form th:method="GET" th:action="@{/userprofile}">
-      <button  type="submit">
+  <td >
+    <form  th:method="GET" th:action="@{/userprofile}">
+      <button  style="background-color: #4CAF50; color: white" type="submit">
         users
       </button>
     </form>
@@ -117,6 +120,6 @@
   </tbody>
 </table>
 
-<a href="/posts/new">Add Post</a>
+
 </body>
 </html>

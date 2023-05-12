@@ -36,8 +36,19 @@
         font-size: 16px;
     }
 
+
     form input[type="submit"] {
-        display: block;
+
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    form input[type="button"] {
+        margin-left: 310px;
         background-color: #4CAF50;
         color: white;
         border: none;
@@ -70,12 +81,16 @@
     <label for="password">password: </label>
     <input type="password" name="password" id="password"/>
     <br/>
-    <input type="submit" value="Login"/>
+    <div style="display: inline-block">
+        <input type="submit" value="Login"/>
+        <input type="button" onclick="location.href='/auth/registration';" value="Sign up"/>
+    </div>
 
     <div th:if="${param.error}" style="color: red">
         Email or password is wrong
     </div>
 </form>
+
 
 </body>
 </html>

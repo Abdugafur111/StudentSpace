@@ -46,6 +46,11 @@ public class PostDAO {
         jdbcTemplate.update("DELETE FROM POSTS WHERE post_id=?", id);
     }
 
+    public List<Post> getAllPostsByEmail(String email) {
+        return jdbcTemplate.query("SELECT * FROM POSTS WHERE email=? ORDER BY post_created_time DESC",
+                new Object[]{email}, new PostRowMapper());
+    }
+
 
     private static final class PostRowMapper implements RowMapper<Post> {
 

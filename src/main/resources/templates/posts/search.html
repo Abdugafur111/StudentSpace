@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-D2rnNQb8Ww/l4ld4N4ezcUOrHX6SK8W6UqkgzVLbbq6ruInCmUYYWvoRkpMhYJYcnX07B+8bhnTVzU6ZqU3J+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>All Posts</title>
+</head>
+<style>
+  body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  a {
+    display: block;
+    margin: 30px auto;
+    width: 80%;
+    max-width: 400px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background-color: #3e8e41;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+
+  /* new CSS for comments link */
+  .comments-link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+  }
+
+  .comments-link:hover {
+    text-decoration: none;
+    color: navy;
+  }
+  button.comment-button {
+    display: block;
+    margin: 10px auto;
+    width: 100px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  button.comment-button:hover {
+    background-color: #3e8e41;
+  }
+  button.alllikes {
+    width: 50px; /* set the same value for width and height */
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 0.5em;
+  }
+
+
+
+
+  .comment-button1 {
+    background-color: #f2f2f2;
+    border: none;
+    color: #333;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-right: 10px;
+  }
+
+
+  .thumbsUp:hover{
+
+
+  }
+
+  .clas{
+    font-size: 24px;
+  }
+  .search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .k {
+    width: 100%;
+    max-width: 855px;
+    padding: 12px 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border-color: #4CAF50 ;
+    color: black;
+    font-size: 16px;
+    margin-left: 460px;
+  }
+
+  .search-container input[type=text]:focus {
+    outline: none;
+  }
+
+  .search-container button[type=submit] {
+    padding: 12px 20px;
+    border-radius: 4px;
+    background-color: #4CAF50; /* Green button color */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .search-container button[type=submit]:hover {
+    background-color: #27ae60; /* Darker green on hover */
+  }
+
+
+
+
+</style>
+<body>
+
+<div style="background-color: #333333" class="search-container">
+  <form class="k" th:method="POST"  th:action="@{/posts/search}">
+    <input type="text" name="email" placeholder="Search by email..." style="font-size: 16px;color: black;border-radius: 10px;padding: 12px 20px;width: 100%; max-width: 710px;">
+    <button type="submit">Search</button>
+  </form>
+  <form style="background-color: gray; border-color:gray" th:method="GET" th:action="@{/userprofile/{id}/edit(id=${user.getStudentId()})}">
+    <input style="background-color: gray;border-color: gray" type="submit" th:value="${user.email}"/>
+  </form>
+  <form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+  </form>
+</div>
+
+<th:block th:if="${not #lists.isEmpty(posts)}">
+
+<table>
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Content</th>
+    <th>Created Time</th>
+    <th>Comments</th>
+    <th>Likes</th>
+    <th>Like</th>
+    <th>Follow</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- iterate over each post and display its information -->
+  <!-- assuming the list of posts is passed as "posts" attribute -->
+  <th:block th:each="post : ${posts}">
+    <tr>
+      <td th:text="${post.email}"></td>
+      <td th:text="${post.content}"></td>
+      <td th:text="${post.postCreatedTime}"></td>
+      <td>
+        <form th:method="GET" th:action="@{/post/{id}/comments(id=${post.postId})}">
+          <button class="comment-button" type="submit">
+            <i class="fa fa-comment"></i>
+            <span th:text="${post.numComments}"></span>
+          </button>
+
+        </form>
+
+      </td>
+      <td>
+
+        <form th:method="GET" th:action="@{/posts/{id}/likes(id=${post.postId})}">
+          <button class="comment-button alllikes" type="submit">
+            <i class="fa fa-thumbs-up"></i>
+            <span th:text="${post.numLikes}"></span>
+          </button>
+        </form>
+      </td>
+
+      <td>
+
+        <form th:method="POST" th:action="@{/posts/{id}/like(id=${post.postId})}">
+          <button class="comment-button1 thumbsUp" type="submit">
+            <i th:style="${post.isLiked() == true} ? 'color: green; font-size: 24px;' : ''" class="fa clas">&#xf087;</i>
+          </button>
+        </form>
+
+
+      </td>
+
+      <td>
+        <th:block th:if="${post.email != email}">
+          <form th:method="post" th:action="@{/followers/add}">
+            <input type="hidden" name="studentEmail" th:value="${post.email}"/>
+            <button type="submit" th:text="${followers.contains(post.email) ? 'Unfollow' : 'Follow'}"></button>
+
+
+          </form>
+        </th:block>
+        <th:block th:unless="${post.email != email}">
+        </th:block>
+      </td>
+
+      <td>
+        <th:block th:if="${post.email == email}">
+          <form th:method="GET" th:action="@{/posts/edit/{id}(id=${post.postId})}">
+            <input type="submit" value="Edit"/>
+          </form>
+          <form th:method="DELETE" th:action="@{/posts/delete/{id}(id=${post.postId})}">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button type="submit">Delete</button>
+          </form>
+        </th:block>
+        <th:block th:unless="${post.email == email}">
+        </th:block>
+      </td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+</th:block>
+<th:block style="margin-left: 800px" th:if="${#lists.isEmpty(posts)}">
+  <p style="margin-left: 900px">No posts found.</p>
+</th:block>
+<a href="/posts">Posts</a>
+</body>
+</html>
