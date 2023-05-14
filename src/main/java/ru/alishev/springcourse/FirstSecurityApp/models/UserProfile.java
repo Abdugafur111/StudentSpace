@@ -1,8 +1,22 @@
 package ru.alishev.springcourse.FirstSecurityApp.models;
 
+import ru.alishev.springcourse.FirstSecurityApp.util.StudentIdValidator;
+
+import javax.validation.Constraint;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
 import java.time.LocalDate;
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import javax.validation.constraints.Email;
 
 
 public class UserProfile {
@@ -11,6 +25,7 @@ public class UserProfile {
 
     @NotEmpty(message = "email should not be empty")
     @Size(min = 2, max = 100, message = "Length of email should be from 2 char to 100")
+    @Email(message = "Invalid email format")
     private String email;
 
     @NotEmpty(message = "password should not be empty")
@@ -19,7 +34,10 @@ public class UserProfile {
 
     private String address;
     private String dateOfBirth;
+
+    @Size(min = 2, max = 30, message = "Length of firstname should be from 2 char to 100")
     private String firstName;
+    @Size(min = 2, max = 30, message = "Length of second name should be from 2 char to 100")
     private String lastName;
 
     private boolean followed;
@@ -33,8 +51,17 @@ public class UserProfile {
     }
 
     private String role;
-
+    @StudentIdConstraint
     private int studentId;
+
+    @Constraint(validatedBy = StudentIdValidator.class)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface StudentIdConstraint {
+        String message() default "Student ID should be exactly 7 digits";
+        Class<?>[] groups() default {};
+        Class<? extends Payload>[] payload() default {};
+    }
 
     public int getStudentId() {
         return studentId;

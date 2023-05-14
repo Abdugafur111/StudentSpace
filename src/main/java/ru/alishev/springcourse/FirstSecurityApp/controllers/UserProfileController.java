@@ -60,6 +60,11 @@ public class UserProfileController {
         userProfileDAO.deleteUser(id);
         return "redirect:/userprofile";
     }
+    @PostMapping("deleted/{id}")
+    public String deleted(@PathVariable("id") int id) {
+        userProfileDAO.deleteUser(id);
+        return "redirect:/auth/login";
+    }
 
 
 }

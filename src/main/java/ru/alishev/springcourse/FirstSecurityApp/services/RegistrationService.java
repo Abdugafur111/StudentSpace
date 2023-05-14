@@ -23,6 +23,7 @@ public class RegistrationService {
     @Transactional
     public void register(UserProfile userProfile) {
         userProfile.setPassword(passwordEncoder.encode(userProfile.getPassword()));
+        System.out.println(passwordEncoder.encode(userProfile.getPassword()));
         userProfileDAO.addUser(userProfile);
     }
 }
