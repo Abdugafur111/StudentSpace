@@ -56,7 +56,7 @@ https://github.com/Abdugafur111/StudentSpace/assets/64993553/e16a75b5-b3fb-40cb-
 
 
 
-#Dockerized PostgreSQL inside Digital Ocean Droplet
+#Dockerized PostgreSQL and hosted Digital Ocean Droplet
 
 
 
