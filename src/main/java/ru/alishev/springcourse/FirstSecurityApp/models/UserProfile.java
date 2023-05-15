@@ -1,5 +1,6 @@
 package ru.alishev.springcourse.FirstSecurityApp.models;
 
+
 import ru.alishev.springcourse.FirstSecurityApp.util.StudentIdValidator;
 
 import javax.validation.Constraint;
@@ -31,7 +32,7 @@ public class UserProfile {
     @NotEmpty(message = "password should not be empty")
     @Size(min = 2, max = 100, message = "Length of password should be from 2 char to 100")
     private String password;
-
+    @NotEmpty(message = "password should not be empty")
     private String address;
     private String dateOfBirth;
 
@@ -52,7 +53,7 @@ public class UserProfile {
 
     private String role;
     @StudentIdConstraint
-    private int studentId;
+    private long studentId;
 
     @Constraint(validatedBy = StudentIdValidator.class)
     @Retention(RetentionPolicy.RUNTIME)
@@ -63,15 +64,15 @@ public class UserProfile {
         Class<? extends Payload>[] payload() default {};
     }
 
-    public int getStudentId() {
+    public long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(long studentId) {
         this.studentId = studentId;
     }
 
-    public UserProfile(String email, String password, String address, String dateOfBirth, String firstName, String lastName, int studentId) {
+    public UserProfile(String email, String password, String address, String dateOfBirth, String firstName, String lastName, long studentId) {
         this.email = email;
         this.password = password;
         this.address = address;
