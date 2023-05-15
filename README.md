@@ -1,7 +1,7 @@
 ## StudentSpace
 
 How to Run Application
-1)Download zip file from github
+1)Download zip file from github \n
 2)Unzip file
 3)Open the source code folder inside IDE(Visual Studio Recommended)
 4)Wait until all dependencies are set
