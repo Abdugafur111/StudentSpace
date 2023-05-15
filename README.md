@@ -1,5 +1,23 @@
 ## StudentSpace
 
+How to Run Application
+1)Download zip file from github
+2)Unzip file
+3)Open the source code folder inside IDE(Visual Studio Recommended)
+4)Wait until all dependencies are set
+5)Choose src/main/java/ru/alishev/springcourse/FirstSecurityApp/SpringSecurityApp.java
+6)Hit the run button to initialize the project
+7)Click this link http://localhost:8080/auth/login
+Now you should be able to interact with our webpage. Database is automatically connected and hosted from the Digital Ocean server.
+
+We have two types of accounts.
+User account: You can sign up by yourself and you can use your email and password for login.
+Admin account: We have only 1 admin account and its credentials are 
+Username: abdu@gmail.com
+Password:jagi
+
+
+
 Report about development of database, deployment and backend development
 
 
