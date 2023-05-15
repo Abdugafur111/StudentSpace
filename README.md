@@ -3,7 +3,6 @@
 Report about development of database, deployment and backend development
 
 
-https://docs.google.com/document/d/1zdC-1xlYWtEDkD97CL-U381I7KRIMDcc/edit?usp=sharing&ouid=118321917710284861082&rtpof=true&sd=true 
 
 #New User Registration and Login
 
