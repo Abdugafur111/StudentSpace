@@ -41,6 +41,19 @@ public class PostLikeController {
         return "redirect:/posts";
     }
 
+    @PostMapping("/posts/{postId}/likeAdmin")
+    public String addPostLikeAdmin(@PathVariable("postId") int postId, String userEmail, Principal principal) {
+        UserProfile user = userProfileDAO.getUserByEmail(principal.getName());
+
+        if(postLikeDAO.getPostLikeByEmail(postId,user.getEmail())==true){
+            postLikeDAO.deletePostLike(postId, user.getEmail());
+        }else {
+            postLikeDAO.addPostLike(postId, user.getEmail());
+        }
+
+        return "redirect:/posts/adminPosts";
+    }
+
 
     @PostMapping("/posts/{postId}/unlike")
     public String deletePostLike(@PathVariable("postId") int postId, String userEmail) {

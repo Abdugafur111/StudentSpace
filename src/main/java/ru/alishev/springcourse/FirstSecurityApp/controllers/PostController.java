@@ -35,9 +35,32 @@ public class PostController {
     }
 
     @GetMapping("/adminPosts")
-    public String getAllPostsAdmin(Model model) {
+    public String getAllPostsAdmin(Model model, Principal principal) {
         List<Post> posts = postDAO.getAllPosts();
+        UserProfile user = userProfileDAO.getUserByEmail(principal.getName());
+        List<String> followers = followersDAO.getFollowing(user.getEmail());
+        System.out.println(followers.size());
+
+        for (Post post : posts) {
+            List<PostComment> comments = postCommentDAO.getAllCommentsByPostId(post.getPostId());
+            post.setNumComments(comments.size());
+
+            int numLikes = postLikeDAO.getPostLikes(post.getPostId()).size();
+            post.setNumLikes(numLikes);
+
+
+            if(postLikeDAO.getPostLikeByEmail(post.getPostId(),user.getEmail())==true) {
+                post.setLiked(true);
+            }else{
+                post.setLiked(false);
+            }
+        }
+
+
+        model.addAttribute("followers", followers);
         model.addAttribute("posts", posts);
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("user", user);
         return "posts/adminPosts";
     }
 
