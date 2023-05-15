@@ -30,7 +30,7 @@ public class UserProfileController {
         System.out.println("index");
         return "userprofile/index";
     }
-//
+    //
 //    @GetMapping("/{id}")
 //    public String show(@PathVariable("id") int id, Model model) {
 //        model.addAttribute("userprofile", userProfileDAO.getUserById(id));

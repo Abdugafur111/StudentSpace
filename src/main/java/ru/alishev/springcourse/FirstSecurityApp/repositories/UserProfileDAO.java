@@ -27,7 +27,9 @@ public class UserProfileDAO {
     }
 
     public UserProfile getUserById(int id) {
-        return jdbcTemplate.query("SELECT * FROM USERS WHERE student_id=?", new Object[]{id}, new BeanPropertyRowMapper<>(UserProfile.class))
+       String studentId = String.valueOf(id);
+
+        return jdbcTemplate.query("SELECT * FROM USERS WHERE student_id=?", new Object[]{studentId}, new BeanPropertyRowMapper<>(UserProfile.class))
                 .stream().findAny().orElse(null);
     }
 
@@ -42,17 +44,21 @@ public class UserProfileDAO {
     }
 
     public void updateUser(int id, UserProfile updatedUser) {
+        String studentId = String.valueOf(id);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         System.out.println(updatedUser.getDateOfBirth());
         LocalDate dateOfBirth = LocalDate.parse(updatedUser.getDateOfBirth(), formatter);
         updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         jdbcTemplate.update("UPDATE USERS SET email=?, password=?, address=?, date_of_birth=?, first_name=?, last_name=? WHERE student_id=?",
-                updatedUser.getEmail(), updatedUser.getPassword(), updatedUser.getAddress(), dateOfBirth, updatedUser.getFirstName(), updatedUser.getLastName(), id);
+                updatedUser.getEmail(), updatedUser.getPassword(), updatedUser.getAddress(), dateOfBirth, updatedUser.getFirstName(), updatedUser.getLastName(), studentId);
 
-}
+    }
 
     public void deleteUser(int id) {
-        jdbcTemplate.update("DELETE FROM USERS WHERE student_id=?", id);
+        String studentId = String.valueOf(id);
+
+        jdbcTemplate.update("DELETE FROM USERS WHERE student_id=?", studentId);
     }
 
     public UserProfile getUserByEmail(String email) {
